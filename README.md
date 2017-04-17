@@ -1,1 +1,1 @@
-# mtg-collection-tracker
+# MTG Collection Tracker

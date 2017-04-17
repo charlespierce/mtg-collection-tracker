@@ -1,0 +1,29 @@
+{
+  "name": "mtg-collection-tracker",
+  "version": "0.1.0",
+  "description": "MTG Card Collection Tracker",
+  "scripts": {
+    "prebuild": "gulp clean",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlespierce/mtg-collection-tracker.git"
+  },
+  "author": "Charles Pierce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlespierce/mtg-collection-tracker/issues"
+  },
+  "homepage": "https://github.com/charlespierce/mtg-collection-tracker#readme",
+  "devDependencies": {
+    "@types/react": "^15.0.21",
+    "@types/react-dom": "^0.14.23",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "rollup": "^0.41.6",
+    "rollup-plugin-typescript2": "^0.4.0",
+    "tslib": "^1.6.0",
+    "typescript": "^2.2.2"
+  }
+}
