@@ -1,4 +1,4 @@
 node_modules/
 build/
-.rpt2_cache/
+build-staging/
 npm-debug.log

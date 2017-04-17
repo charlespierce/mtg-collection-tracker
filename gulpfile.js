@@ -1,34 +1,53 @@
 const gulp = require('gulp');
 const clean = require('gulp-clean');
 const rollup = require('rollup');
-const rollupTs = require('rollup-plugin-typescript2');
+const uglify = require('rollup-plugin-uglify');
+const ts = require('gulp-typescript');
+
+const tsProject = ts.createProject("tsconfig.json");
 
 gulp.task("clean", function () {
     return gulp.src("./build/", { read: false }).pipe(clean());
 });
 
-gulp.task("copy-static", function () {
+gulp.task("ts-clean", function () {
+    return gulp.src("./build-staging/", { read: false }).pipe(clean());
+});
+
+gulp.task("ts-build", ["ts-clean"], function () {
+    return tsProject.src().pipe(tsProject()).js.pipe(gulp.dest("./build-staging/"));
+});
+
+gulp.task("copy-static", ["clean"], function () {
     return gulp.src("./static/**").pipe(gulp.dest("build/"));
 });
 
-gulp.task("build", ["copy-static"], function () {
+function createBundle(isProd) {
     return rollup.rollup({
-        entry: "./src/index.tsx",
+        entry: "./build-staging/index.js",
         external: [
             "react",
             "react-dom"
         ],
         plugins: [
-            rollupTs()
+            isProd && uglify()
         ]
     }).then((bundle) => {
         bundle.write({
-            format: "iife",
             dest: "./build/bundle.js",
+            format: "iife",
             globals: {
-                react: "React",
+                "react": "React",
                 "react-dom": "ReactDOM"
             }
         });
     });
+}
+
+gulp.task("build", ["copy-static", "ts-build"], function () {
+    return createBundle(true);
+});
+
+gulp.task("build-dev", ["copy-static", "ts-build"], function () {
+    return createBundle(false);
 });
