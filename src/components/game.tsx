@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Board } from './board';
 
-export class Game extends React.Component<any, any> {
+export class Game extends React.PureComponent<any, any> {
     public render() {
         return (
             <div className="game">

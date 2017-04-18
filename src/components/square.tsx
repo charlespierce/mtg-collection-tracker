@@ -1,11 +1,14 @@
 import * as React from 'react';
 
-export class Square extends React.Component<any, any> {
-    public render() {
-        return (
-            <button className="square">
-                {/* TODO */}
-            </button>
-        );
-    }
+export interface SquareProps {
+    onClick: () => void;
+    value: string | null;
+}
+
+export function Square(props: SquareProps) {
+    return (
+        <button className="square" onClick={ () => props.onClick() }>
+            { props.value }
+        </button>
+    );
 }

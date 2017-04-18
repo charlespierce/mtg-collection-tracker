@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "description": "MTG Card Collection Tracker",
   "scripts": {
+    "prebuild": "gulp clean",
     "build": "gulp build",
-    "dev": "gulp build-dev"
+    "predev": "gulp clean",
+    "dev": "gulp build-dev",
+    "prewatch": "gulp clean",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
