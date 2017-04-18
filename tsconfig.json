@@ -2,8 +2,11 @@
     "compilerOptions": {
         "target": "es5",
         "module": "es6",
-        "alwaysStrict": true,
         "jsx": "react",
+        "noEmitHelpers": true,
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "alwaysStrict": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
         "strictNullChecks": true

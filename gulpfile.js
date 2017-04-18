@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const clean = require('gulp-clean');
 const rollup = require('rollup');
 const uglify = require('rollup-plugin-uglify');
+const nodeResolve = require('rollup-plugin-node-resolve');
 const ts = require('gulp-typescript');
 
 const tsProject = ts.createProject("tsconfig.json");
@@ -30,6 +31,7 @@ function createBundle(isProd) {
             "react-dom"
         ],
         plugins: [
+            nodeResolve(),
             isProd && uglify()
         ]
     }).then((bundle) => {

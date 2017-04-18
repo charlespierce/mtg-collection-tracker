@@ -1,1 +1,1 @@
-# MTG Collection Tracker
+# React Tutorial with Rollup Build Chain
