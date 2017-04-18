@@ -1,64 +1,30 @@
 import * as React from 'react';
 import { Square } from './square';
-import { calculateWinner } from '../libs/calculateWinner';
 
-export interface BoardState {
+interface BoardProps {
     squares: (string | null)[];
-    xIsNext: boolean;
+    onClick: (i: number) => void;
 }
 
-export class Board extends React.PureComponent<any, BoardState> {
-    constructor() {
-        super();
-
-        this.state = {
-            squares: [],
-            xIsNext: true
-        }
-    }
-
-    private nextPlayer() {
-        return this.state.xIsNext ? "X" : "O";
-    }
-
-    private handleClick(i: number) {
-        const squares = this.state.squares.slice();
-        if (!calculateWinner(squares) && !squares[i]) {
-            squares[i] = this.nextPlayer();
-            this.setState({
-                squares,
-                xIsNext: !this.state.xIsNext
-            });
-        }
-    }
-
-    private renderSquare(i: number) {
-        return <Square value={ this.state.squares[i] } onClick={ () => this.handleClick(i) } />
-    }
-
-    public render() {
-        const winner = calculateWinner(this.state.squares);
-        const status = winner ? `${winner} Wins!` : `Next Player: ${this.nextPlayer()}`;
-
-        return (
-            <div>
-                <div className="status">{ status }</div>
-                <div className="board-row">
-                    { this.renderSquare(0) }
-                    { this.renderSquare(1) }
-                    { this.renderSquare(2) }
-                </div>
-                <div className="board-row">
-                    { this.renderSquare(3) }
-                    { this.renderSquare(4) }
-                    { this.renderSquare(5) }
-                </div>
-                <div className="board-row">
-                    { this.renderSquare(6) }
-                    { this.renderSquare(7) }
-                    { this.renderSquare(8) }
-                </div>
+export function Board(props: BoardProps) {
+    return (
+        <div>
+            <div className="status">{ status }</div>
+            <div className="board-row">
+                <Square value={ props.squares[0] } onClick={ () => props.onClick(0) } />
+                <Square value={ props.squares[1] } onClick={ () => props.onClick(1) } />
+                <Square value={ props.squares[2] } onClick={ () => props.onClick(2) } />
             </div>
-        );
-    }
+            <div className="board-row">
+                <Square value={ props.squares[3] } onClick={ () => props.onClick(3) } />
+                <Square value={ props.squares[4] } onClick={ () => props.onClick(4) } />
+                <Square value={ props.squares[5] } onClick={ () => props.onClick(5) } />
+            </div>
+            <div className="board-row">
+                <Square value={ props.squares[6] } onClick={ () => props.onClick(6) } />
+                <Square value={ props.squares[7] } onClick={ () => props.onClick(7) } />
+                <Square value={ props.squares[8] } onClick={ () => props.onClick(8) } />
+            </div>
+        </div>
+    )
 }
