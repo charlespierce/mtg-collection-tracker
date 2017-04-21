@@ -13,7 +13,7 @@ export function calculateWinner(board: (string | null)[]) {
     for (let i = 0; i < lines.length; i++) {
         const [first, second, third] = lines[i];
         if (board[first] && board[first] === board[second] && board[first] === board[third]) {
-            return board[first];
+            return board[second];
         }
     }
 
